@@ -1,0 +1,53 @@
+[DEFAULT]
+; Latitude of observer
+LATITUDE=49.8954
+
+; Longitude of observer
+LONGITUDE=-97.1385
+
+; What kind of allskycam - choice are NONE,INDI-ALLSKY or something else (e.g. TJ)
+ALLSKYCAM=OTHER
+
+; Determines what camera to pull the latest image from in indi-allsky
+ALLSKYCAMNO=1
+
+; What the latest file is called (in non-indi-allsky)
+ALLSKYFILE=/data/latest.jpg
+
+; How long you want to wait to transition between open and closed (in minutes)
+PENDING=10
+
+; Message to output when no clouds
+CLEARMSG=Roof Open
+
+; Message to output when cloudy
+CLOUDMSG=Roof Closed
+
+; Message to output when cloud detected but roof open
+CLOUDPENDINGMSG=Close Pending
+
+; Message to output when clear sky detected but roof closed
+CLEARPENDINGMSG=Open Pending
+
+; Model file to use
+KERASMODEL=/data/keras_model.h5
+
+; Labels file to use
+KERASLABEL=/data/labels.txt
+
+; Altitude that the sun has to be at to be full night
+DAYTIME=-12
+
+; File to output
+STATUSFILE=/data/roofStatus.txt
+
+; Whether to sample the allsky camera
+ALLSKYSAMPLING=True
+
+; Where to save the sampled images
+ALLSKYSAMPLEDIR=/data/allskyimages
+
+; How often to save images
+ALLSKYSAMPLERATE=10
+
+

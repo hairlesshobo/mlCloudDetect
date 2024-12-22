@@ -90,6 +90,36 @@ Ensure your service is running as follows:
 
     systemctl --user status mlCloudDetect
 
+## Running with docker
+This will allow you to easily build a docker container and run it from there without the need to download all the dependencies
+directly to your host system. This has only been tested on Linux.
+
+1. Copy the `mlCloudDetect.ini.docker` file to `mlCloudDet4ect.ini`
+2. Edit to your liking, but note that `ALLSKYCAM` cannot be set to `INDI-ALLSKY` because the docker container won't have access 
+  to the indi-allsky database. Additionally, I would not recommend touching any parameter that points to `/data/...` unless you 
+  know what you are doing.
+3. Create a directory called `data` and put the following in it:
+  - `keras_model.h5` (downloadable from above - recommended to create your own!)
+  - `labels.txt` (downloadable above - also recommended to create your own)
+  In addition to the above files, the `latest.jpg` file should be placed here for analysis, and this is also the directory where 
+  roofStatus.txt will be created.
+
+Build the docker image:
+```bash
+docker build -t ml_cloud_detect .
+```
+
+Run it interactively for testing:
+```bash
+docker run --rm -it -v $(pwd)/data:/data -v $(pwd)/mlCloudDetect.ini:/app/mlCloudDetect.ini ml_cloud_detect
+```
+
+Run it in the background:
+```bash
+docker run -n ml_cloud_detect -it -v $(pwd)/data:/data -v $(pwd)/mlCloudDetect.ini:/app/mlCloudDetect.ini ml_cloud_detect
+```
+
+
 ## Running mlCloudDetect under Windows 
 If you don't want to run mlCloudDetect under Python directly there is a Windows version as an exe file created under PyInstaller that incorporates these requirements, so if that works for you please download the exe file from:
 
